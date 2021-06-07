@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SplashFragment">
+
+    <ImageView
+        android:id="@+id/ivIntro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_6"
+        android:src="@drawable/img_intro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvIntroTitle"
+        style="@style/TextAppearance.MaterialComponents.Headline4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_4"
+        android:text="Selamat Datang Pejuang Covid-19 !"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@+id/ivIntro"
+        app:layout_constraintStart_toStartOf="@+id/ivIntro"
+        app:layout_constraintTop_toBottomOf="@+id/ivIntro" />
+
+    <TextView
+        android:id="@+id/tvIntroRemark"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_6"
+        android:text="Coronavirus COVID-19 adalah penyakit menular yang menyerang gangguan sistem pernapasan"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="@id/tvIntroTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvIntroTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvIntroTitle" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartNow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_4"
+        android:backgroundTint="@color/black"
+        android:drawableEnd="@drawable/ic_chevron_right_24"
+        android:paddingStart="@dimen/spacing_3"
+        android:paddingTop="@dimen/spacing_3"
+        android:paddingEnd="@dimen/spacing_2"
+        android:paddingBottom="@dimen/spacing_3"
+        android:text="Mulai Sekarang"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        android:textColor="#33C9D3"
+        app:cornerRadius="@dimen/card_radius_2"
+        app:layout_constraintEnd_toEndOf="@+id/tvIntroRemark"
+        app:layout_constraintStart_toStartOf="@+id/tvIntroRemark"
+        app:layout_constraintTop_toBottomOf="@+id/tvIntroRemark" />
+
+    <ImageView
+        android:layout_width="136dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/img_logo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnStartNow"
+        app:layout_constraintStart_toStartOf="@+id/btnStartNow"
+        app:layout_constraintTop_toBottomOf="@+id/btnStartNow" />
+</androidx.constraintlayout.widget.ConstraintLayout>

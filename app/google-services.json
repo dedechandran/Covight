@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545504380019",
+    "project_id": "covight-tro",
+    "storage_bucket": "covight-tro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545504380019:android:fe9035ddcbb704a52d9606",
+        "android_client_info": {
+          "package_name": "com.covid.covidapps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545504380019-7e3skerovbsnpod8lfuel11ij7antnkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCRFdHANPMNFL30NPZKubNYtncy5ngLXXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545504380019-7e3skerovbsnpod8lfuel11ij7antnkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

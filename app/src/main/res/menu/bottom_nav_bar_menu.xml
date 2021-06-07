@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menuDashboard"
+        android:title="Dashboard"
+        android:icon="@drawable/ic_dashboard_24"
+        />
+
+    <item
+        android:id="@+id/menuPatient"
+        android:title="Patient"
+        android:icon="@drawable/ic_people_24"
+        />
+
+    <item
+        android:id="@+id/menuTools"
+        android:title="Tools"
+        android:icon="@drawable/ic_tools_24"
+        />
+
+</menu>
