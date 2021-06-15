@@ -42,7 +42,7 @@ class SplashFragment : Fragment() {
                 when(result){
                     is Result.Success -> {
                         if (result.data == true) {
-                            navController.navigate(R.id.action_splashFragment_to_menuDashboard)
+                            navController.navigate(R.id.action_splashFragment_to_homeFragment)
                         } else {
                             navController.navigate(R.id.action_splashFragment_to_loginFragment)
                         }

@@ -24,14 +24,4 @@ class DashboardFragment : Fragment() {
         // Inflate the layout for this fragment
         return binding.root
     }
-
-    override fun onAttach(activity: Activity) {
-        super.onAttach(activity)
-        val btmNav = activity.findViewById<BottomNavigationView>(R.id.btmNavBar)
-        btmNav.isVisible = true
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
 }

@@ -49,7 +49,7 @@ class LoginFragment : Fragment() {
                     is Result.Success -> {
                         Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
                         vm.setLoginState(true)
-                        navController.navigate(R.id.action_loginFragment_to_menuDashboard)
+                        navController.navigate(R.id.action_loginFragment_to_homeFragment)
                     }
                     is Result.Error -> {
                         Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()

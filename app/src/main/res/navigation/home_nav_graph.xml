@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/menuDashboard">
+
+    <fragment
+        android:id="@id/menuDashboard"
+        android:name="com.covid.covidapps.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@id/menuPatient"
+        android:name="com.covid.covidapps.PatientFragment"
+        android:label="fragment_tools"
+        tools:layout="@layout/fragment_tools" />
+    <fragment
+        android:id="@id/menuTools"
+        android:name="com.covid.covidapps.ToolsFragment"
+        android:label="ToolsFragment"
+        tools:layout="@layout/fragment_tools"
+        />
+
+</navigation>
