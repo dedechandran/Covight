@@ -1,40 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".PatientFragment">
-
-    <TextView
-        android:id="@+id/tvPatientHeader"
-        style="@style/TextAppearance.MaterialComponents.Headline6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_4"
-        android:text="Patient 1"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_height="match_parent">
 
     <TableLayout
+        android:padding="@dimen/spacing_4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_4"
         android:stretchColumns="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPatientHeader">
+        app:layout_constraintTop_toTopOf="parent">
 
         <TableRow>
 
             <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:padding="3dip"
                 android:text="FSR" />
 
             <TextView
                 android:id="@+id/tvFsrValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:gravity="start"
                 android:padding="3dip"
@@ -44,14 +31,12 @@
         <TableRow>
 
             <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:padding="3dip"
                 android:text="Heart Rate" />
 
             <TextView
                 android:id="@+id/tvHeartRateValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:gravity="start"
                 android:padding="3dip"
@@ -61,14 +46,12 @@
         <TableRow>
 
             <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:padding="3dip"
                 android:text="SpO2" />
 
             <TextView
                 android:id="@+id/tvSpO2Value"
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:gravity="start"
                 android:padding="3dip"
@@ -78,14 +61,12 @@
         <TableRow>
 
             <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:padding="3dip"
                 android:text="Suhu" />
 
             <TextView
                 android:id="@+id/tvTemperatureValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:layout_column="1"
                 android:gravity="start"
                 android:padding="3dip"
