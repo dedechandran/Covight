@@ -1,4 +1,4 @@
-package com.covid.covidapps
+package com.covid.covidapps.ui.patient
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

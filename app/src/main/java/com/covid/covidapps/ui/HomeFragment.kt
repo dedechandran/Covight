@@ -1,4 +1,4 @@
-package com.covid.covidapps
+package com.covid.covidapps.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import com.covid.covidapps.R
 import com.covid.covidapps.databinding.FragmentHomeBinding
 
 
@@ -23,6 +23,7 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
         binding = FragmentHomeBinding.bind(view)
+        binding.btmNavBar.background = null
         return binding.root
     }
 

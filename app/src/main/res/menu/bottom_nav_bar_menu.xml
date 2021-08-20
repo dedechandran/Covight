@@ -2,20 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menuDashboard"
-        android:title="Dashboard"
+        android:title="Beranda"
         android:icon="@drawable/ic_dashboard_24"
         />
 
     <item
-        android:id="@+id/menuPatient"
-        android:title="Patient"
-        android:icon="@drawable/ic_people_24"
+        android:id="@+id/menuEdukaVight"
+        android:title="EdukaVight"
+        android:icon="@drawable/ic_baseline_medical_services_24"
         />
 
     <item
-        android:id="@+id/menuTools"
-        android:title="Tools"
-        android:icon="@drawable/ic_tools_24"
+        android:id="@+id/menuPlaceholder"
+        android:title=""
+        android:enabled="false"
+        />
+
+
+    <item
+        android:id="@+id/menuPatient"
+        android:title="Patient"
+        android:icon="@drawable/ic_baseline_event_note_24"
+        />
+
+    <item
+        android:id="@+id/menuAccount"
+        android:title="Account"
+        android:icon="@drawable/ic_baseline_account_circle_24"
         />
 
 </menu>

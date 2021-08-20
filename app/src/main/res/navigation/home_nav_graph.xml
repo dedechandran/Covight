@@ -7,19 +7,26 @@
 
     <fragment
         android:id="@id/menuDashboard"
-        android:name="com.covid.covidapps.DashboardFragment"
+        android:name="com.covid.covidapps.ui.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
         tools:layout="@layout/fragment_dashboard" />
+
     <fragment
         android:id="@id/menuPatient"
-        android:name="com.covid.covidapps.PatientFragment"
+        android:name="com.covid.covidapps.ui.patient.PatientFragment"
         android:label="fragment_tools"
-        tools:layout="@layout/fragment_tools" />
+        tools:layout="@layout/fragment_patient" />
+
     <fragment
-        android:id="@id/menuTools"
-        android:name="com.covid.covidapps.ToolsFragment"
-        android:label="ToolsFragment"
-        tools:layout="@layout/fragment_tools"
-        />
+        android:id="@id/menuAccount"
+        android:name="com.covid.covidapps.ui.account.AccountFragment"
+        android:label="AccountFragment"
+        tools:layout="@layout/fragment_account" />
+
+    <fragment
+        android:id="@+id/menuEdukaVight"
+        android:name="com.covid.covidapps.ui.eduka.EdukaVightFragment"
+        android:label="EdukaVightLabel"
+        tools:layout="@layout/fragment_eduka_vight" />
 
 </navigation>

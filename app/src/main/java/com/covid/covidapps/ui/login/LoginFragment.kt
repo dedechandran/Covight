@@ -1,4 +1,4 @@
-package com.covid.covidapps
+package com.covid.covidapps.ui.login
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,6 +9,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.covid.covidapps.R
+import com.covid.covidapps.Result
 import com.covid.covidapps.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect

@@ -21,11 +21,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/layout/fragment_patient.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/patient_item.xml" value="0.25" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/drawable/ic_dashboard_24.xml" value="0.2109375" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/drawable/ic_eduka_vight.xml" value="0.2109375" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/drawable/ic_heartbeat.xml" value="0.24635416666666668" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/layout/activity_main.xml" value="0.1598731884057971" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/layout/fragment_dashboard.xml" value="0.1646403242147923" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/layout/fragment_eduka_vight.xml" value="0.33061594202898553" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/layout/fragment_home.xml" value="0.33" />
+        <entry key="..\:/SourceCode/CovidApps/app/src/main/res/menu/bottom_nav_bar_menu.xml" value="0.23020833333333332" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="FindBugsConfigurable">
     <option name="make" value="true" />
     <option name="effort" value="default" />

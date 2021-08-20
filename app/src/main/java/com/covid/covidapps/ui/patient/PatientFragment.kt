@@ -1,4 +1,4 @@
-package com.covid.covidapps
+package com.covid.covidapps.ui.patient
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,6 +9,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.covid.covidapps.R
+import com.covid.covidapps.Result
 import com.covid.covidapps.databinding.FragmentPatientBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
