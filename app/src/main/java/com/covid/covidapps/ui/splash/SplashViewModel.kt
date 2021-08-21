@@ -2,6 +2,7 @@ package com.covid.covidapps.ui.splash
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.covid.covidapps.Result
 import com.covid.covidapps.repository.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

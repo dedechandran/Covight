@@ -1,7 +1,5 @@
 package com.covid.covidapps
 
-import java.lang.Exception
-
 sealed class Result<T>(
     val data: T? = null,
     val message: String? = null

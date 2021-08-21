@@ -12,86 +12,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/spacing_4"
-        android:text="Patient 1"
+        android:text="Daftar Pasien Covid-19"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TableLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="@dimen/spacing_4"
-        android:stretchColumns="2"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvPatientHeader">
+        app:layout_constraintTop_toBottomOf="@+id/tvPatientHeader" />
 
-        <TableRow>
+    <com.covid.covidapps.ui.cardlist.CardListView
+        android:id="@+id/rvPatient"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvPatientHeader" />
 
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="FSR" />
-
-            <TextView
-                android:id="@+id/tvFsrValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:gravity="start"
-                android:padding="3dip"
-                android:text=": 0" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="Heart Rate" />
-
-            <TextView
-                android:id="@+id/tvHeartRateValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:gravity="start"
-                android:padding="3dip"
-                android:text=": 0" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="SpO2" />
-
-            <TextView
-                android:id="@+id/tvSpO2Value"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:gravity="start"
-                android:padding="3dip"
-                android:text=": 0" />
-        </TableRow>
-
-        <TableRow>
-
-            <TextView
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:padding="3dip"
-                android:text="Suhu" />
-
-            <TextView
-                android:id="@+id/tvTemperatureValue"
-                style="@style/TextAppearance.MaterialComponents.Body1"
-                android:layout_column="1"
-                android:gravity="start"
-                android:padding="3dip"
-                android:text=": 0" />
-        </TableRow>
-
-    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

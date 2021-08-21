@@ -42,13 +42,11 @@ class PatientFragment : Fragment() {
             vm.state.collect { result ->
                 when (result) {
                     is Result.Loading -> {
-
+                        binding.progressBar.visibility = View.VISIBLE
                     }
                     is Result.Success -> {
-                        binding.tvFsrValue.text = ": ${result.data?.FSR}"
-                        binding.tvHeartRateValue.text = ": ${result.data?.heartRate}"
-                        binding.tvSpO2Value.text = ": ${result.data?.spO2}"
-                        binding.tvTemperatureValue.text = ": ${result.data?.temperature}"
+                        binding.progressBar.visibility = View.GONE
+                        binding.rvPatient.setItems(result.data.orEmpty())
                     }
                     is Result.Error -> {
                         Toast.makeText(requireContext(), "Error", Toast.LENGTH_SHORT).show()

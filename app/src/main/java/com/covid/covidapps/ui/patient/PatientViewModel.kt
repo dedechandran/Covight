@@ -2,13 +2,18 @@ package com.covid.covidapps.ui.patient
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.covid.covidapps.R
 import com.covid.covidapps.datasource.Patient
 import com.covid.covidapps.repository.PatientRepository
+import com.covid.covidapps.Result
+import com.covid.covidapps.ui.cardlist.CardItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,13 +23,28 @@ class PatientViewModel @Inject constructor(
     private val patientRepository: PatientRepository
 ) : ViewModel() {
 
-    val state: MutableStateFlow<Result<Patient>> = MutableStateFlow(Result.Init())
+    val state: MutableStateFlow<Result<List<CardItem>>> = MutableStateFlow(Result.Init())
 
     init {
+        state.value = Result.Loading()
         viewModelScope.launch(Dispatchers.IO) {
-            patientRepository.getPatient().collect {
-                state.value = Result.Success(it)
-            }
+            patientRepository.getPatient()
+                .map {
+                    CardItem.PatientDetails(
+                        id = "",
+                        image = R.drawable.ic_baseline_account_circle_24,
+                        patientDetails = it,
+                        status = "Sedang",
+                        name = "Patient Test Name",
+                        roomName = "Room 1"
+                    )
+                }
+                .catch {
+                    state.value = Result.Error(message = "There is something wrong")
+                }
+                .collect {
+                    state.value = Result.Success(listOf(it))
+                }
         }
     }
 }
