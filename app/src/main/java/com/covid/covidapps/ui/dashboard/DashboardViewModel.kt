@@ -1,11 +1,10 @@
-package com.covid.covidapps.ui.patient
+package com.covid.covidapps.ui.dashboard
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.covid.covidapps.R
-import com.covid.covidapps.datasource.Patient
-import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.Result
+import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.ui.cardlist.CardItem
 import com.covid.covidapps.utils.PatientStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,24 +19,22 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 @HiltViewModel
-class PatientViewModel @Inject constructor(
+class DashboardViewModel @Inject constructor(
     private val patientRepository: PatientRepository
-) : ViewModel() {
+): ViewModel(){
 
     val state: MutableStateFlow<Result<List<CardItem>>> = MutableStateFlow(Result.Init())
 
     init {
         state.value = Result.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             patientRepository.getPatient()
                 .map {
-                    CardItem.PatientDetails(
+                    CardItem.PatientSummary(
                         id = "",
                         image = R.drawable.ic_baseline_account_circle_24,
-                        patientDetails = it,
                         status = PatientStatus.SEDANG,
-                        name = "Patient Test Name",
-                        roomName = "Room 1"
+                        total = "1 Orang"
                     )
                 }
                 .catch {
@@ -48,4 +45,5 @@ class PatientViewModel @Inject constructor(
                 }
         }
     }
+
 }

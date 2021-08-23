@@ -89,178 +89,34 @@
             app:layout_constraintStart_toStartOf="@+id/cvNurse"
             app:layout_constraintTop_toBottomOf="@+id/cvNurse" />
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvRingan"
+        <com.covid.covidapps.ui.cardlist.CardListView
+            android:id="@+id/rvPatientSummary"
             android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_margin="@dimen/spacing_4"
-            android:backgroundTint="@color/green_500"
-            app:cardCornerRadius="@dimen/card_radius_2"
-            app:layout_constraintEnd_toStartOf="@id/cvSedang"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvPatientClassificationHeader">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/spacing_4">
-
-                <TextView
-                    android:id="@+id/tvRinganLabel"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Ringan"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="7,000,000"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvSedang"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="@dimen/spacing_4"
-            android:backgroundTint="@color/yellow_500"
-            app:cardCornerRadius="@dimen/card_radius_2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/cvRingan"
-            app:layout_constraintTop_toTopOf="@+id/cvRingan">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/spacing_4">
-
-                <TextView
-                    android:id="@+id/tvSedangLabel"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Sedang"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="7,000,000"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvBerat"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/spacing_4"
-            android:backgroundTint="@color/orange_500"
-            app:cardCornerRadius="@dimen/card_radius_2"
-            app:layout_constraintEnd_toEndOf="@+id/cvRingan"
-            app:layout_constraintStart_toStartOf="@+id/cvRingan"
-            app:layout_constraintTop_toBottomOf="@id/cvRingan">
+            app:layout_constraintBottom_toTopOf="@id/cvNewInfo"
+            app:layout_constraintEnd_toEndOf="@id/tvPatientClassificationHeader"
+            app:layout_constraintStart_toStartOf="@id/tvPatientClassificationHeader"
+            app:layout_constraintTop_toBottomOf="@id/tvPatientClassificationHeader" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/spacing_4">
-
-                <TextView
-                    android:id="@+id/tvBeratLabel"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Berat"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="7,000,000"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/cvNewInfo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvPatientClassificationHeader" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cvKritis"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:backgroundTint="@color/red_500"
-            app:cardCornerRadius="@dimen/card_radius_2"
-            app:layout_constraintEnd_toEndOf="@+id/cvSedang"
-            app:layout_constraintStart_toStartOf="@id/cvSedang"
-            app:layout_constraintTop_toTopOf="@+id/cvBerat">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="@dimen/spacing_4">
-
-                <TextView
-                    android:id="@+id/tvKritistLabel"
-                    style="@style/TextAppearance.MaterialComponents.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Kritis"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    style="@style/TextAppearance.MaterialComponents.Headline6"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="7,000,000"
-                    android:textColor="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
+            android:id="@+id/cvNewInfo"
             android:layout_width="match_parent"
             android:layout_height="210dp"
             android:layout_margin="@dimen/spacing_4"
             app:cardCornerRadius="@dimen/card_radius_2"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cvBerat">
+            app:layout_constraintTop_toBottomOf="@id/rvPatientSummary">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"

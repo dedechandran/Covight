@@ -19,7 +19,7 @@ class SplashViewModel @Inject constructor(
 
     fun startNow(){
         loginState.value = Result.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             val isLogin = loginRepository.checkLogin()
             loginState.value = Result.Success(isLogin)
         }

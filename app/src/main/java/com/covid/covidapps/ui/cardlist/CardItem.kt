@@ -1,13 +1,14 @@
 package com.covid.covidapps.ui.cardlist
 
 import com.covid.covidapps.datasource.Patient
+import com.covid.covidapps.utils.PatientStatus
 
 sealed class CardItem {
     data class PatientDetails(
         val id: String,
         val image: Int,
         val patientDetails: Patient?,
-        val status: String,
+        val status: PatientStatus,
         val name: String,
         val roomName: String
     ) : CardItem()
@@ -15,7 +16,7 @@ sealed class CardItem {
     data class PatientSummary(
         val id: String,
         val image: Int,
-        val status: String,
+        val status: PatientStatus,
         val total: String?
     ) : CardItem()
 

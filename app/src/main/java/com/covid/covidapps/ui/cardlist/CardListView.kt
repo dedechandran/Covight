@@ -29,13 +29,18 @@ class CardListView @JvmOverloads constructor(
     init {
         binding.rvCard.apply {
             adapter = cardlistAdapter
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
     }
 
 
     fun setItems(items: List<CardItem>){
         cardlistAdapter.submitList(items)
+    }
+
+    fun setOritentation(orientation: Int = LinearLayoutManager.VERTICAL){
+        binding.rvCard.apply {
+            layoutManager = LinearLayoutManager(context, orientation, false)
+        }
     }
 
 }

@@ -25,6 +25,6 @@ class EdukaVightFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.wvEduka.loadUrl("https://aktiv.co.id/")
+        binding.wvEduka.loadUrl("https://pikobar.jabarprov.go.id/")
     }
 }

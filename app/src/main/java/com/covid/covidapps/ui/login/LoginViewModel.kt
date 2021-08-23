@@ -25,7 +25,7 @@ class LoginViewModel @Inject constructor(
     @ExperimentalCoroutinesApi
     fun login(email: String, password: String) {
         state.value = Result.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             loginRepository.login(email, password)
                 .catch {
                     state.value =

@@ -3,9 +3,11 @@ package com.covid.covidapps.repository
 import com.covid.covidapps.datasource.AuthDataSource
 import com.covid.covidapps.datasource.PreferenceDataSource
 import com.covid.covidapps.datasource.User
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import javax.inject.Inject
 
 class LoginRepository @Inject constructor(
@@ -15,14 +17,14 @@ class LoginRepository @Inject constructor(
 
     @ExperimentalCoroutinesApi
     suspend fun login(email: String, password: String): Flow<User?> {
-        return authDataSource.login(email, password)
+        return authDataSource.login(email, password).flowOn(Dispatchers.IO)
     }
 
-    suspend fun checkLogin(): Boolean {
+    fun checkLogin(): Boolean {
         return preferenceDataSource.getLoginState()
     }
 
-    suspend fun setLoginState(isLogin: Boolean){
+    fun setLoginState(isLogin: Boolean){
         preferenceDataSource.setLoginState(isLogin)
     }
 

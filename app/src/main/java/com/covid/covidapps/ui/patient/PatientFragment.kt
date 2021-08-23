@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.covid.covidapps.R
 import com.covid.covidapps.Result
 import com.covid.covidapps.databinding.FragmentPatientBinding
@@ -32,6 +33,7 @@ class PatientFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_patient, container, false)
         binding = FragmentPatientBinding.bind(view)
+        binding.rvPatient.setOritentation(orientation = LinearLayoutManager.VERTICAL)
         return view
     }
 

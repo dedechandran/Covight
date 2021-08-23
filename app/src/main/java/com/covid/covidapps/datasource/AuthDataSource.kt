@@ -10,7 +10,8 @@ import kotlinx.coroutines.flow.callbackFlow
 import javax.inject.Inject
 
 class AuthDataSource @Inject constructor(
-    private val firebaseAuth: FirebaseAuth
+    private val firebaseAuth: FirebaseAuth,
+    private val preference: PreferenceDataSource
 ) {
 
     @ExperimentalCoroutinesApi
@@ -19,7 +20,9 @@ class AuthDataSource @Inject constructor(
             firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        offer(firebaseAuth.currentUser!!.toUser())
+                        val user = firebaseAuth.currentUser!!.toUser()
+                        offer(user)
+                        preference.saveUserInfo(user = user)
                     }else{
                         offer(null)
                     }
@@ -31,7 +34,9 @@ class AuthDataSource @Inject constructor(
     fun FirebaseUser.toUser() =
         User(
             userEmail = email ?: "-",
-            userName = displayName ?: "-"
+            userName = displayName ?: "-",
+            userMobileNo = phoneNumber ?: "-",
+            userImage = displayName ?: "-"
         )
 
 }
