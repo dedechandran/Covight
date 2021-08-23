@@ -27,7 +27,7 @@ class DetailsViewModel @Inject constructor(
                     CardItem.PatientDetails(
                         id = "",
                         patientDetails = it,
-                        status = PatientStatus.SEDANG,
+                        status = it.status ?: PatientStatus.TANPA_GEJALA,
                         name = "Patient Test Name",
                         roomName = "Room 1"
                     )

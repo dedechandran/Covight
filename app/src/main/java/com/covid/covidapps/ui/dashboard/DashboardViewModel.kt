@@ -1,5 +1,6 @@
 package com.covid.covidapps.ui.dashboard
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.covid.covidapps.R
@@ -33,11 +34,12 @@ class DashboardViewModel @Inject constructor(
                     CardItem.PatientSummary(
                         id = "",
                         image = R.drawable.ic_baseline_account_circle_24,
-                        status = PatientStatus.SEDANG,
+                        status = it.status ?: PatientStatus.TANPA_GEJALA,
                         total = "1 Orang"
                     )
                 }
-                .catch {
+                .catch { throwable ->
+                    Log.d("ERROR", throwable.stackTraceToString())
                     state.value = Result.Error(message = "There is something wrong")
                 }
                 .collect {
