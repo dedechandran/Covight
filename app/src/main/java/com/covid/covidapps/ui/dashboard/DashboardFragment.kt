@@ -8,13 +8,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.findNavController
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.covid.covidapps.R
 import com.covid.covidapps.Result
 import com.covid.covidapps.databinding.FragmentDashboardBinding
+import com.covid.covidapps.ui.details.DetailsFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.collect
@@ -26,6 +28,9 @@ class DashboardFragment : Fragment() {
     private val vm by viewModels<DashboardViewModel>()
 
     private lateinit var binding: FragmentDashboardBinding
+    private val navController by lazy {
+        activity?.findNavController(R.id.navHostFragment)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +38,7 @@ class DashboardFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_dashboard, container, false)
         binding = FragmentDashboardBinding.bind(view)
-        binding.rvPatientSummary.setOritentation(orientation = LinearLayoutManager.HORIZONTAL)
+        binding.rvPatientSummary.setOrientation(orientation = LinearLayoutManager.HORIZONTAL)
         // Inflate the layout for this fragment
         return binding.root
     }
@@ -47,7 +52,11 @@ class DashboardFragment : Fragment() {
             }
         }
         binding.btnGuide.setOnClickListener {
-            findNavController().navigate(R.id.instructionFragment)
+            navController?.navigate(R.id.action_homeFragment_to_instructionFragment)
+        }
+        binding.rvPatientSummary.setOnItemClickListener {
+            val args = bundleOf(DetailsFragment.STATUS_EXTRA to it)
+            navController?.navigate(R.id.action_homeFragment_to_detailsFragment, args)
         }
         lifecycleScope.launchWhenResumed {
             vm.state.collect { result ->

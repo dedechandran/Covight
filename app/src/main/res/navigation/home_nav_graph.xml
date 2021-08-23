@@ -29,10 +29,4 @@
         android:label="EdukaVightLabel"
         tools:layout="@layout/fragment_eduka_vight" />
 
-    <fragment
-        android:id="@+id/instructionFragment"
-        android:name="com.covid.covidapps.ui.dashboard.InstructionFragment"
-        android:label="fragment_instruction"
-        tools:layout="@layout/fragment_instruction" />
-
 </navigation>

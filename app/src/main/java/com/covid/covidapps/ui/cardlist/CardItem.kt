@@ -6,7 +6,6 @@ import com.covid.covidapps.utils.PatientStatus
 sealed class CardItem {
     data class PatientDetails(
         val id: String,
-        val image: Int,
         val patientDetails: Patient?,
         val status: PatientStatus,
         val name: String,

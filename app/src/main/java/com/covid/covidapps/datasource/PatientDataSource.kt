@@ -26,7 +26,7 @@ class PatientDataSource @Inject constructor(
                     offer(
                         Patient(
                             FSR = data["FSR"] as Long,
-                            heartRate = data["HeartRate"] as Long,
+                            heartRate = data["HeartRate"] as Double,
                             spO2 = data["SpO2"] as Long,
                             temperature = data["Suhu"] as Double
                         )

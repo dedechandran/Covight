@@ -1,34 +1,27 @@
-package com.covid.covidapps.ui.patient
+package com.covid.covidapps.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.covid.covidapps.R
-import com.covid.covidapps.datasource.Patient
-import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.Result
+import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.ui.cardlist.CardItem
 import com.covid.covidapps.utils.PatientStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@ExperimentalCoroutinesApi
 @HiltViewModel
-class PatientViewModel @Inject constructor(
+class DetailsViewModel @Inject constructor(
     private val patientRepository: PatientRepository
 ) : ViewModel() {
 
-    val state: MutableStateFlow<Result<List<CardItem>>> = MutableStateFlow(Result.Init())
+    var uiState: MutableStateFlow<Result<List<CardItem>>> = MutableStateFlow(Result.Init())
 
-    init {
-        state.value = Result.Loading()
-        viewModelScope.launch(Dispatchers.IO) {
+    fun initialize(status: String) {
+        viewModelScope.launch {
+            uiState.value = Result.Loading()
             patientRepository.getPatient()
                 .map {
                     CardItem.PatientDetails(
@@ -39,12 +32,11 @@ class PatientViewModel @Inject constructor(
                         roomName = "Room 1"
                     )
                 }
-                .catch {
-                    state.value = Result.Error(message = "There is something wrong")
-                }
+                .filter { it.status.name == status }
                 .collect {
-                    state.value = Result.Success(listOf(it))
+                    uiState.value = Result.Success(listOf(it))
                 }
+
         }
     }
 }

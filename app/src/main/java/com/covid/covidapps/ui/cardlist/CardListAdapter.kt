@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import com.covid.covidapps.R
 
 class CardListAdapter : ListAdapter<CardItem, CardListViewHolder>(DIFF_CALLBACK) {
+    private var listener: ((String) -> Unit)? = null
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardListViewHolder {
         val layout = when (viewType) {
             PATIENT_ITEM_TYPE -> R.layout.patient_details_item
@@ -15,7 +17,8 @@ class CardListAdapter : ListAdapter<CardItem, CardListViewHolder>(DIFF_CALLBACK)
             else -> throw error("")
         }
         return CardListViewHolder(
-            LayoutInflater.from(parent.context).inflate(layout, parent, false)
+            view = LayoutInflater.from(parent.context).inflate(layout, parent, false),
+            listener = listener
         )
     }
 
@@ -29,6 +32,10 @@ class CardListAdapter : ListAdapter<CardItem, CardListViewHolder>(DIFF_CALLBACK)
             is CardItem.News -> NEWS_ITEM_TYPE
             is CardItem.PatientSummary -> PATIENT_SUMMARY_ITEM_TYPE
         }
+    }
+
+    fun setOnItemClickListener(listener: (String) -> Unit){
+        this.listener = listener
     }
 
     companion object {

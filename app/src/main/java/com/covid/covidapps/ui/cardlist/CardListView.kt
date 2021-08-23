@@ -37,10 +37,14 @@ class CardListView @JvmOverloads constructor(
         cardlistAdapter.submitList(items)
     }
 
-    fun setOritentation(orientation: Int = LinearLayoutManager.VERTICAL){
+    fun setOrientation(orientation: Int = LinearLayoutManager.VERTICAL){
         binding.rvCard.apply {
             layoutManager = LinearLayoutManager(context, orientation, false)
         }
+    }
+
+    fun setOnItemClickListener(listener: (String) -> Unit){
+        cardlistAdapter.setOnItemClickListener(listener)
     }
 
 }

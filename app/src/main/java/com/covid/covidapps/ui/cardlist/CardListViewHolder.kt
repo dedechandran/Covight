@@ -7,7 +7,8 @@ import com.covid.covidapps.databinding.PatientDetailsItemBinding
 import com.covid.covidapps.databinding.PatientSummaryItemBinding
 import com.covid.covidapps.utils.PatientStatus
 
-class CardListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+class CardListViewHolder(view: View, private val listener: ((String) -> Unit)? = null) :
+    RecyclerView.ViewHolder(view) {
 
     fun bind(item: CardItem) {
         when (item) {
@@ -30,23 +31,29 @@ class CardListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             tvHeartRateValue.text = ": ${item.patientDetails?.heartRate.toString()}"
             tvSpO2Value.text = ": ${item.patientDetails?.spO2.toString()}"
             tvTemperatureValue.text = ": ${item.patientDetails?.temperature.toString()}"
+            cvPatientDetails.setOnClickListener {
+                listener?.invoke(item.status.name)
+            }
         }
     }
 
-    private fun bindPatientSummary(item: CardItem.PatientSummary){
+    private fun bindPatientSummary(item: CardItem.PatientSummary) {
         val binding = PatientSummaryItemBinding.bind(itemView)
-        with(binding){
+        with(binding) {
             ivPatient.setImageResource(getPatientStatusIcon(patientStatus = item.status))
             tvPatientStatus.apply {
                 setTextColor(Color.CYAN)
                 text = item.status.name
             }
             tvPatientTotal.text = item.total
+            cvPatientSummary.setOnClickListener {
+                listener?.invoke(item.status.name)
+            }
         }
     }
 
-    private fun getPatientStatusIcon(patientStatus: PatientStatus): Int{
-        return when(patientStatus){
+    private fun getPatientStatusIcon(patientStatus: PatientStatus): Int {
+        return when (patientStatus) {
             PatientStatus.SEDANG -> PatientStatus.SEDANG.image
             PatientStatus.BERAT -> PatientStatus.BERAT.image
             PatientStatus.KRITIS -> PatientStatus.KRITIS.image
