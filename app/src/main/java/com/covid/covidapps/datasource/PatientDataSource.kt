@@ -59,11 +59,11 @@ class PatientDataSource @Inject constructor(
             emit(
                 patient.copy(
                     status = when (result.toInt()) {
-                        1 -> PatientStatus.KRITIS
-                        2 -> PatientStatus.BERAT
-                        3 -> PatientStatus.SEDANG
-                        4 -> PatientStatus.RINGAN
-                        5 -> PatientStatus.TANPA_GEJALA
+                        4 -> PatientStatus.KRITIS
+                        3 -> PatientStatus.BERAT
+                        2 -> PatientStatus.SEDANG
+                        1 -> PatientStatus.RINGAN
+                        0 -> PatientStatus.TANPA_GEJALA
                         else -> PatientStatus.TANPA_GEJALA
                     }
                 )
