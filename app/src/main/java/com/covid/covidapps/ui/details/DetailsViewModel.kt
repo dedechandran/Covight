@@ -2,7 +2,6 @@ package com.covid.covidapps.ui.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.covid.covidapps.R
 import com.covid.covidapps.Result
 import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.ui.cardlist.CardItem
@@ -24,17 +23,23 @@ class DetailsViewModel @Inject constructor(
             uiState.value = Result.Loading()
             patientRepository.getPatient()
                 .map {
-                    CardItem.PatientDetails(
-                        id = "",
-                        patientDetails = it,
-                        status = it.status ?: PatientStatus.TANPA_GEJALA,
-                        name = "Patient Test Name",
-                        roomName = "Room 1"
-                    )
+                    it.filter { patient ->
+                        patient.status?.name == status
+                    }
                 }
-                .filter { it.status.name == status }
+                .map {
+                    it.map { patient ->
+                        CardItem.PatientDetails(
+                            id = patient.id.toString(),
+                            patientDetails = patient,
+                            status = patient.status ?: PatientStatus.TANPA_GEJALA,
+                            name = patient.patientName,
+                            roomName = "Room 1"
+                        )
+                    }
+                }
                 .collect {
-                    uiState.value = Result.Success(listOf(it))
+                    uiState.value = Result.Success(it)
                 }
 
         }

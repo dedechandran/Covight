@@ -16,7 +16,7 @@ class PatientRepository @Inject constructor(
 
     @FlowPreview
     @ExperimentalCoroutinesApi
-    suspend fun getPatient(): Flow<Patient>{
+    suspend fun getPatient(): Flow<List<Patient>> {
         return dataSource.getPatient()
             .flatMapConcat {
                 dataSource.classify(it)

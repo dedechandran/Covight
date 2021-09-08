@@ -9,7 +9,6 @@ import com.covid.covidapps.repository.PatientRepository
 import com.covid.covidapps.ui.cardlist.CardItem
 import com.covid.covidapps.utils.PatientStatus
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
@@ -31,19 +30,22 @@ class DashboardViewModel @Inject constructor(
         viewModelScope.launch {
             patientRepository.getPatient()
                 .map {
-                    CardItem.PatientSummary(
-                        id = "",
-                        image = R.drawable.ic_baseline_account_circle_24,
-                        status = it.status ?: PatientStatus.TANPA_GEJALA,
-                        total = "1 Orang"
-                    )
+                    it.map { patient ->
+                        CardItem.PatientSummary(
+                            id = patient.id.toString(),
+                            image = R.drawable.ic_baseline_account_circle_24,
+                            status = patient.status ?: PatientStatus.TANPA_GEJALA,
+                            total = "1 Orang"
+                        )
+                    }
+
                 }
                 .catch { throwable ->
                     Log.d("ERROR", throwable.stackTraceToString())
                     state.value = Result.Error(message = "There is something wrong")
                 }
                 .collect {
-                    state.value = Result.Success(listOf(it))
+                    state.value = Result.Success(it)
                 }
         }
     }

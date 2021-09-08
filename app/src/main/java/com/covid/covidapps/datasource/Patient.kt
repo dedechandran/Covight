@@ -7,7 +7,12 @@ data class Patient(
     val heartRate: Double,
     val spO2: Double,
     val temperature: Double,
-    val status: PatientStatus? = null
+    val status: PatientStatus? = null,
+    val gender: String,
+    val id: Long,
+    val createdDate: String,
+    val age: Int,
+    val patientName: String
 )
 
 
@@ -34,11 +39,14 @@ fun Patient.convert() = Patient(
     },
     heartRate = heartRate,
     spO2 = when{
-        spO2 < 28 -> 12.toDouble()
-        spO2 < 90 -> 2.toDouble()
-        spO2 in 90.0..95.0 -> 1.toDouble()
         spO2 > 95 -> 0.toDouble()
-        spO2 > 28 -> 13.toDouble()
+        spO2 in 90.0..95.0 -> 1.toDouble()
+        spO2 < 90 -> 2.toDouble()
         else -> 0.toDouble()
-    }
+    },
+    gender = gender,
+    id = id,
+    age = age,
+    patientName = patientName,
+    createdDate = createdDate
 )

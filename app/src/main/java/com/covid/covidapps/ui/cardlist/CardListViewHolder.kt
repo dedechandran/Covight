@@ -43,7 +43,7 @@ class CardListViewHolder(view: View, private val listener: ((String) -> Unit)? =
             ivPatient.setImageResource(getPatientStatusIcon(patientStatus = item.status))
             tvPatientStatus.apply {
                 setTextColor(Color.CYAN)
-                text = item.status.name
+                text = item.status.status
             }
             tvPatientTotal.text = item.total
             cvPatientSummary.setOnClickListener {

@@ -10,9 +10,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.flow
-import org.json.JSONObject
 import javax.inject.Inject
 
 class PatientDataSource @Inject constructor(
@@ -21,20 +19,30 @@ class PatientDataSource @Inject constructor(
 ) {
 
     @ExperimentalCoroutinesApi
-    suspend fun getPatient(): Flow<Patient> {
+    suspend fun getPatient(): Flow<List<Patient>> {
         return callbackFlow {
-            val ref = db.getReference("tools-1")
+            val ref = db.getReference("datapasien")
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    val data = snapshot.value as HashMap<*, *>
-                    val patient = Patient(
-                        FSR = (data["FSR"] as String).toDouble(),
-                        heartRate = (data["HeartRate"] as String).toDouble(),
-                        spO2 = (data["SpO2"] as String).toDouble(),
-                        temperature = (data["Suhu"] as String).toDouble(),
-                    )
-                    offer(patient)
-                    Log.d("DATA", "$data")
+                    val result = mutableListOf<Patient>()
+                    for (patient in snapshot.children) {
+                        val data = patient.value as HashMap<*, *>
+                        val variables = (data["listPemeriksaan"] as List<HashMap<*, *>>)[0]
+                        val patient = Patient(
+                            FSR = (variables["FSR"] as String).toDouble(),
+                            heartRate = (variables["HeartRate"] as String).toDouble(),
+                            spO2 = (variables["SpO2"] as String).toDouble(),
+                            temperature = (variables["Suhu"] as String).toDouble(),
+                            id = data["id"] as Long,
+                            patientName = data["namaPasien"] as String,
+                            age = (data["umur"] as String).toInt(),
+                            createdDate = data["createdDate"] as String,
+                            gender = data["gender"] as String
+                        )
+                        result.add(patient)
+                    }
+                    offer(result)
+                    Log.d("DATA", "${snapshot.children}")
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -47,18 +55,23 @@ class PatientDataSource @Inject constructor(
         }
     }
 
-    suspend fun classify(patient: Patient): Flow<Patient> {
-        val convertedValue = patient.convert()
-        val x1 = 18.toString()
-        val x2 = 1.toString()
-        val x3 = convertedValue.temperature.toInt().toString()
-        val x4 = convertedValue.FSR.toInt().toString()
-        val x5 = convertedValue.spO2.toInt().toString()
+    suspend fun classify(patients: List<Patient>): Flow<List<Patient>> {
         return flow {
-            val result = service.classify(x1, x2, x3, x4, x5)
-            emit(
-                patient.copy(
-                    status = when (result.toInt()) {
+            val result = mutableListOf<Patient>()
+            for (patient in patients) {
+                val convertedValue = patient.convert()
+                val x1 = convertedValue.age.toString()
+                val x2 = if (convertedValue.gender == "L") {
+                    0
+                } else {
+                    1
+                }
+                val x3 = convertedValue.temperature.toInt().toString()
+                val x4 = convertedValue.FSR.toInt().toString()
+                val x5 = convertedValue.spO2.toInt().toString()
+                val status = service.classify(x1, x2.toString(), x3, x4, x5)
+                val newPatient = patient.copy(
+                    status = when (status.toInt()) {
                         4 -> PatientStatus.KRITIS
                         3 -> PatientStatus.BERAT
                         2 -> PatientStatus.SEDANG
@@ -67,7 +80,9 @@ class PatientDataSource @Inject constructor(
                         else -> PatientStatus.TANPA_GEJALA
                     }
                 )
-            )
+                result.add(newPatient)
+            }
+            emit(result)
         }
     }
 }

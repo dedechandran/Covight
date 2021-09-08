@@ -1,12 +1,18 @@
 package com.covid.covidapps.ui
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
@@ -28,6 +34,7 @@ class HomeFragment : Fragment() {
     private val mainNavController by lazy {
         activity?.findNavController(R.id.navHostFragment)
     }
+    private val vm by viewModels<HomeViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,6 +42,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+        createNotificationChannel()
         binding = FragmentHomeBinding.bind(view)
         binding.btmNavBar.background = null
         bottomSheetDialog = HandlingCaseBottomSheetDialog.newInstance(
@@ -83,6 +91,38 @@ class HomeFragment : Fragment() {
                 childFragmentManager,
                 HandlingCaseBottomSheetDialog::class.simpleName
             )
+        }
+        vm.initialze()
+        vm.notificationEvent.observe(this) {
+            with(NotificationManagerCompat.from(requireContext())) {
+                notify(0, createNotification(it).build())
+            }
+        }
+    }
+
+    private fun createNotification(message: String): NotificationCompat.Builder {
+        return NotificationCompat.Builder(requireContext(), "CHANNEL_ID")
+            .setSmallIcon(R.drawable.ic_baseline_account_circle_24)
+            .setContentTitle("Covight")
+            .setContentText(message)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+    }
+
+    private fun createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val name = "Covight"
+            val descriptionText = "Covight"
+            val importance = NotificationManager.IMPORTANCE_DEFAULT
+            val channel = NotificationChannel("CHANNEL_ID", name, importance).apply {
+                description = descriptionText
+            }
+            // Register the channel with the system
+            val notificationManager: NotificationManager =
+                activity?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+            notificationManager.createNotificationChannel(channel)
         }
     }
 }
