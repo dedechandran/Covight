@@ -21,21 +21,24 @@ class PatientDataSource @Inject constructor(
     @ExperimentalCoroutinesApi
     suspend fun getPatient(): Flow<List<Patient>> {
         return callbackFlow {
-            val ref = db.getReference("datapasien")
+            val ref = db.reference
             val listener = object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
+                    val patientRef = snapshot.child("datapasien")
+                    val toolsRef = snapshot.child("dataAlat")
                     val result = mutableListOf<Patient>()
-                    for (patient in snapshot.children) {
+                    for (patient in patientRef.children) {
                         val data = patient.value as HashMap<*, *>
-                        val variables = (data["listPemeriksaan"] as List<HashMap<*, *>>)[0]
+                        val toolsId = data["alatId"] as String
+                        val usedTool = toolsRef.child(toolsId).value as HashMap<*, *>
                         val patient = Patient(
-                            FSR = (variables["FSR"] as String).toDouble(),
-                            heartRate = (variables["HeartRate"] as String).toDouble(),
-                            spO2 = (variables["SpO2"] as String).toDouble(),
-                            temperature = (variables["Suhu"] as String).toDouble(),
+                            FSR = (usedTool["FSR"] as String).toDouble(),
+                            heartRate = (usedTool["HeartRate"] as String).toDouble(),
+                            spO2 = (usedTool["SpO2"] as String).toDouble(),
+                            temperature = (usedTool["Suhu"] as String).toDouble(),
                             id = data["id"] as Long,
                             patientName = data["namaPasien"] as String,
-                            age = (data["umur"] as String).toInt(),
+                            age = (data["umur"] as Long).toInt(),
                             createdDate = data["createdDate"] as String,
                             gender = data["gender"] as String
                         )

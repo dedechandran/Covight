@@ -25,7 +25,7 @@ class CardListViewHolder(view: View, private val listener: ((String) -> Unit)? =
             tvPatientRoom.text = item.roomName
             tvPatientStatus.apply {
                 setTextColor(Color.CYAN)
-                text = item.status.name
+                text = item.status.status
             }
             tvFsrValue.text = ": ${item.patientDetails?.FSR.toString()}"
             tvHeartRateValue.text = ": ${item.patientDetails?.heartRate.toString()}"
